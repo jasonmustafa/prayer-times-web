@@ -71,7 +71,7 @@ class App extends React.Component {
 
     // MapQuest geocoding get coordinates
     const geocoding_api_call = await fetch(
-      `http://www.mapquestapi.com/geocoding/v1/address?key=${MQ_API_KEY}&location=${location}`
+      `https://www.mapquestapi.com/geocoding/v1/address?key=${MQ_API_KEY}&location=${location}`
     );
     const locationData = await geocoding_api_call.json();
     // console.log(locationData);
