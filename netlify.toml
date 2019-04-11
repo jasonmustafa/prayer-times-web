@@ -1,6 +1,0 @@
-[build]
-  command = "yarn build"
-  publish = "build"
-
-[context.production.environment]
-  REACT_APP_MQ_API_KEY = "From netlify.toml (REACT_APP_)"
