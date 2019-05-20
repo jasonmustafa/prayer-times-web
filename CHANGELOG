@@ -1,0 +1,4 @@
+4.11.2019
+    - First deploy
+    - Changed http to https request from MQ
+    - Removed unnecessary netlify.toml file

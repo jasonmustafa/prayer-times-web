@@ -10,3 +10,7 @@ Simple prayer times application.
 ## Authors
 
 * **Jason Mustafa**
+
+## Acknowledgments
+
+* [Pray Times](http://praytimes.org/) - Used to calculate prayer times.
