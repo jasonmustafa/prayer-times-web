@@ -12,9 +12,11 @@ function Footer(props) {
 
   return (
     <div className="animated delay-06s fadeInDown">
-      <Typography variant="caption" className={classes.footer}>
-        Created by Jason Mustafa
-      </Typography>
+      <a href="https://www.jasonmustafa.com/" target="_blank">
+        <Typography variant="caption" className={classes.footer}>
+          Created by Jason Mustafa
+        </Typography>
+      </a>
       <br />
     </div>
   );
