@@ -48,7 +48,13 @@ class App extends React.Component {
 
         // Prayer times
         const PT = new PrayTimes('ISNA');
-        const prayerData = PT.getTimes(new Date(), [latitude, longitude], 'auto', 'auto', '12h');
+        const prayerData = PT.getTimes(
+          new Date(),
+          [latitude, longitude],
+          'auto',
+          'auto',
+          '12h'
+        );
         // console.log(prayerData);
 
         this.setState({
@@ -82,7 +88,13 @@ class App extends React.Component {
     // Calculates prayer times using PrayTimes.js
     // TODO: add toggle for different calculation methods
     const PT = new PrayTimes('ISNA');
-    const prayerData = PT.getTimes(new Date(), [latitude, longitude], 'auto', 'auto', '12h');
+    const prayerData = PT.getTimes(
+      new Date(),
+      [latitude, longitude],
+      'auto',
+      'auto',
+      '12h'
+    );
     // console.log(prayerData);
 
     // Sets state of data, otherwise leaves undefined
@@ -122,9 +134,10 @@ class App extends React.Component {
         <Grid
           container
           spacing={0}
-          direction="column"
-          alignItems="center"
-          style={{ minHeight: '96vh' }}>
+          direction='column'
+          alignItems='center'
+          style={{ minHeight: '96vh' }}
+        >
           <Grid item>
             <Paper style={{ background: '#000000', maxWidth: 300 }}>
               <Titles />

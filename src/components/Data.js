@@ -22,15 +22,15 @@ function Data(props) {
     <div>
       <div>
         {props.location && (
-          <div className="animated fadeInDown">
-            <div className="animated fadeInDown">
+          <div className='animated fadeInDown'>
+            <div className='animated fadeInDown'>
               {props.location && (
-                <Typography variant="caption" className={classes.text}>
+                <Typography variant='caption' className={classes.text}>
                   {props.location}
                 </Typography>
               )}
               {props.error && (
-                <Typography variant="h6" className={classes.text}>
+                <Typography variant='h6' className={classes.text}>
                   {props.error}
                 </Typography>
               )}
@@ -39,21 +39,23 @@ function Data(props) {
         )}
       </div>
 
-      <div className="animated fadeInDown">
-        <Grid container direction="row" justify="center" alignItems="center">
+      <div className='animated fadeInDown'>
+        <Grid container direction='row' justify='center' alignItems='center'>
           <Grid item xs={4}>
             {props.fajr && (
-              <Typography variant="h6" className={classes.textLeft}>
+              <Typography variant='h6' className={classes.textLeft}>
                 Fajr
               </Typography>
             )}
           </Grid>
           <Grid item xs={4}>
-            {props.fajr && <img src={Moonset} alt="" className={classes.svgFajr} />}
+            {props.fajr && (
+              <img src={Moonset} alt='' className={classes.svgFajr} />
+            )}
           </Grid>
           <Grid item xs={4}>
             {props.fajr && (
-              <Typography variant="h6" className={classes.textRight}>
+              <Typography variant='h6' className={classes.textRight}>
                 {props.fajr}
               </Typography>
             )}
@@ -61,17 +63,19 @@ function Data(props) {
 
           <Grid item xs={4}>
             {props.sunrise && (
-              <Typography variant="h6" className={classes.textLeft}>
+              <Typography variant='h6' className={classes.textLeft}>
                 Sunrise
               </Typography>
             )}
           </Grid>
           <Grid item xs={4}>
-            {props.sunrise && <img src={Sunrise} alt="" className={classes.svgSunrise} />}
+            {props.sunrise && (
+              <img src={Sunrise} alt='' className={classes.svgSunrise} />
+            )}
           </Grid>
           <Grid item xs={4}>
             {props.sunrise && (
-              <Typography variant="h6" className={classes.textRight}>
+              <Typography variant='h6' className={classes.textRight}>
                 {props.sunrise}
               </Typography>
             )}
@@ -79,17 +83,19 @@ function Data(props) {
 
           <Grid item xs={4}>
             {props.dhuhr && (
-              <Typography variant="h6" className={classes.textLeft}>
+              <Typography variant='h6' className={classes.textLeft}>
                 Dhuhr
               </Typography>
             )}
           </Grid>
           <Grid item xs={4}>
-            {props.dhuhr && <img src={Noon} alt="" className={classes.svgDhuhr} />}
+            {props.dhuhr && (
+              <img src={Noon} alt='' className={classes.svgDhuhr} />
+            )}
           </Grid>
           <Grid item xs={4}>
             {props.dhuhr && (
-              <Typography variant="h6" className={classes.textRight}>
+              <Typography variant='h6' className={classes.textRight}>
                 {props.dhuhr}
               </Typography>
             )}
@@ -97,17 +103,19 @@ function Data(props) {
 
           <Grid item xs={4}>
             {props.asr && (
-              <Typography variant="h6" className={classes.textLeft}>
+              <Typography variant='h6' className={classes.textLeft}>
                 Asr
               </Typography>
             )}
           </Grid>
           <Grid item xs={4}>
-            {props.asr && <img src={Afternoon} alt="" className={classes.svgAsr} />}
+            {props.asr && (
+              <img src={Afternoon} alt='' className={classes.svgAsr} />
+            )}
           </Grid>
           <Grid item xs={4}>
             {props.asr && (
-              <Typography variant="h6" className={classes.textRight}>
+              <Typography variant='h6' className={classes.textRight}>
                 {props.asr}
               </Typography>
             )}
@@ -115,17 +123,19 @@ function Data(props) {
 
           <Grid item xs={4}>
             {props.maghrib && (
-              <Typography variant="h6" className={classes.textLeft}>
+              <Typography variant='h6' className={classes.textLeft}>
                 Maghrib
               </Typography>
             )}
           </Grid>
           <Grid item xs={4}>
-            {props.maghrib && <img src={Sunset} alt="" className={classes.svgMaghrib} />}
+            {props.maghrib && (
+              <img src={Sunset} alt='' className={classes.svgMaghrib} />
+            )}
           </Grid>
           <Grid item xs={4}>
             {props.maghrib && (
-              <Typography variant="h6" className={classes.textRight}>
+              <Typography variant='h6' className={classes.textRight}>
                 {props.maghrib}
               </Typography>
             )}
@@ -133,17 +143,19 @@ function Data(props) {
 
           <Grid item xs={4}>
             {props.isha && (
-              <Typography variant="h6" className={classes.textLeft}>
+              <Typography variant='h6' className={classes.textLeft}>
                 Isha
               </Typography>
             )}
           </Grid>
           <Grid item xs={4}>
-            {props.isha && <img src={Night} alt="" className={classes.svgIsha} />}
+            {props.isha && (
+              <img src={Night} alt='' className={classes.svgIsha} />
+            )}
           </Grid>
           <Grid item xs={4}>
             {props.isha && (
-              <Typography variant="h6" className={classes.textRight}>
+              <Typography variant='h6' className={classes.textRight}>
                 {props.isha}
               </Typography>
             )}

@@ -13,12 +13,12 @@ function Titles(props) {
 
   return (
     <div>
-      <div className="animated fadeInDown">
-        <img src={Logo} alt="" className={classes.logo} />
+      <div className='animated fadeInDown'>
+        <img src={Logo} alt='' className={classes.logo} />
       </div>
 
-      <div className="animated delay-02s fadeInDown">
-        <Typography variant="h4" className={classes.title}>
+      <div className='animated delay-02s fadeInDown'>
+        <Typography variant='h4' className={classes.title}>
           Prayer Times
         </Typography>
         <br />

@@ -45,7 +45,8 @@ export const styles = theme => ({
     width: 48,
     display: 'block',
     margin: 'auto',
-    filter: 'invert(88%) sepia(22%) saturate(990%) hue-rotate(193deg) brightness(95%) contrast(91%)'
+    filter:
+      'invert(88%) sepia(22%) saturate(990%) hue-rotate(193deg) brightness(95%) contrast(91%)'
   },
   svgSunrise: {
     height: 48,
@@ -93,7 +94,8 @@ export const styles = theme => ({
     display: 'block',
     margin: 'auto',
     marginTop: 24,
-    filter: 'invert(68%) sepia(41%) saturate(345%) hue-rotate(218deg) brightness(92%) contrast(86%)'
+    filter:
+      'invert(68%) sepia(41%) saturate(345%) hue-rotate(218deg) brightness(92%) contrast(86%)'
   },
   footer: {
     color: '#bdbdbd',

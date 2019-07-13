@@ -11,9 +11,13 @@ function Footer(props) {
   const { classes } = props;
 
   return (
-    <div className="animated delay-06s fadeInDown">
-      <a href="https://www.jasonmustafa.com/" target="_blank" rel="noopener noreferrer">
-        <Typography variant="caption" className={classes.footer}>
+    <div className='animated delay-06s fadeInDown'>
+      <a
+        href='https://www.jasonmustafa.com/'
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        <Typography variant='caption' className={classes.footer}>
           Created by Jason Mustafa
         </Typography>
       </a>

@@ -25,24 +25,24 @@ function Form(props) {
   const { classes } = props;
 
   return (
-    <div className="animated delay-04s fadeInDown">
+    <div className='animated delay-04s fadeInDown'>
       <div className={classes.padding15}>
         <form onSubmit={props.getData}>
           <MuiThemeProvider theme={textfieldTheme}>
             <Input
-              id="location"
-              label="Location"
-              type="search"
-              placeholder="Location"
+              id='location'
+              label='Location'
+              type='search'
+              placeholder='Location'
               fullWidth
               required={true}
               classes={{
                 underline: classes.textfieldUnderline
               }}
               endAdornment={
-                <InputAdornment position="end">
-                  <IconButton type="submit" color="primary">
-                    <SearchIcon fontSize="small" />
+                <InputAdornment position='end'>
+                  <IconButton type='submit' color='primary'>
+                    <SearchIcon fontSize='small' />
                   </IconButton>
                 </InputAdornment>
               }
