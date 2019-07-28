@@ -67,7 +67,7 @@ class App extends React.Component {
         ).then();
 
         const reverse_locationData = await reverse_geocoding_api_call.json();
-        console.log(reverse_locationData);
+        //console.log(reverse_locationData);
 
         let cityName = reverse_locationData.results[0].locations[0].adminArea5;
         let stateName = reverse_locationData.results[0].locations[0].adminArea3;
@@ -119,10 +119,8 @@ class App extends React.Component {
         if (location) {
             this.setState({
                 location:
-                    locationData.results[0].locations[0].street +
-                    ' ' +
                     locationData.results[0].locations[0].adminArea5 +
-                    ' ' +
+                    ', ' +
                     locationData.results[0].locations[0].adminArea3,
                 fajr: prayerData.fajr,
                 sunrise: prayerData.sunrise,
