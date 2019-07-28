@@ -10,8 +10,9 @@ import Grid from '@material-ui/core/Grid';
 
 import { PrayTimes } from './PrayTimes';
 
-// gets key from Netlify
-//TODO: set up better environment variable handling
+require('dotenv').config();
+
+// MapQuest API key
 const MQ_API_KEY = process.env.REACT_APP_MQ_API_KEY;
 
 
