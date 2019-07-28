@@ -104,9 +104,11 @@ export const styles = theme => ({
         textDecoration: 'none'
     },
     footerCreated: {
-        color: '#bdbdbd'
+        color: '#bdbdbd',
+        fontWeight: 'bold',
     },
     footerName: {
-        color: '#f50057'
+        color: '#f50057',
+        fontWeight: 'bold',
     }
 });
