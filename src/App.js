@@ -63,7 +63,7 @@ class App extends React.Component {
         // console.log(prayerData);
 
         const reverse_geocoding_api_call = await fetch(
-            `http://www.mapquestapi.com/geocoding/v1/reverse?key=${MQ_API_KEY}&location=${latlon}`
+            `https://www.mapquestapi.com/geocoding/v1/reverse?key=${MQ_API_KEY}&location=${latlon}`
         ).then();
 
         const reverse_locationData = await reverse_geocoding_api_call.json();
