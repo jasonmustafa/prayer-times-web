@@ -1,9 +1,11 @@
-export const styles = theme => ({
+export const styles = ({
     text: {
         color: '#fafafa',
-        textAlign: 'center',
-        padding: 24,
-        fontSize: 20
+        fontSize: 20,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 20
     },
     textLeft: {
         display: 'inline-block',
@@ -25,9 +27,6 @@ export const styles = theme => ({
         '&:after': {
             borderBottomColor: '#d1c4e9'
         }
-    },
-    button: {
-        margin: theme.spacing.unit
     },
     padding15: {
         padding: 0

@@ -189,12 +189,14 @@ export const PrayTimes = (method) => {
 
 	// initialize settings
 	calcMethod = methods[method] ? method : calcMethod;
-	var params = methods[calcMethod].params;
+	//var params = methods[calcMethod].params;
+	params = methods[calcMethod].params;
 	for (var id in params)
 		setting[id] = params[id];
 
 	// init time offsets
-	for (var i in timeNames)
+	//for (var i in timeNames)
+	for (i in timeNames)
 		offset[i] = 0;
 
 
@@ -311,7 +313,7 @@ export const PrayTimes = (method) => {
 		var q = DMath.fixAngle(280.459 + 0.98564736* D);
 		var L = DMath.fixAngle(q + 1.915* DMath.sin(g) + 0.020* DMath.sin(2*g));
 
-		var R = 1.00014 - 0.01671* DMath.cos(g) - 0.00014* DMath.cos(2*g);
+		//var R = 1.00014 - 0.01671* DMath.cos(g) - 0.00014* DMath.cos(2*g);
 		var e = 23.439 - 0.00000036* D;
 
 		var RA = DMath.arctan2(DMath.cos(e)* DMath.sin(L), DMath.cos(L))/ 15;

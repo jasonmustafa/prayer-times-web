@@ -15,7 +15,6 @@ require('dotenv').config();
 // MapQuest API key
 const MQ_API_KEY = process.env.REACT_APP_MQ_API_KEY;
 
-
 class App extends React.Component {
     constructor(props) {
         // Sets initial states to undefined
@@ -46,7 +45,6 @@ class App extends React.Component {
         let lat = position.coords.latitude;
         let lon = position.coords.longitude;
         let latlon = lat + ',' + lon;
-        console.log(latlon);
 
         this.setState({
             latitude: lat,
@@ -66,9 +64,7 @@ class App extends React.Component {
 
         const reverse_geocoding_api_call = await fetch(
             `http://www.mapquestapi.com/geocoding/v1/reverse?key=${MQ_API_KEY}&location=${latlon}`
-        ).then(
-
-        )
+        ).then();
 
         const reverse_locationData = await reverse_geocoding_api_call.json();
         console.log(reverse_locationData);
