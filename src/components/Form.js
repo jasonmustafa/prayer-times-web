@@ -41,7 +41,7 @@ function Form(props) {
                             }}
                             endAdornment={
                                 <InputAdornment position="end">
-                                    <IconButton type="submit" color="primary">
+                                    <IconButton type="submit" color="primary" aria-label="Search Button">
                                         <SearchIcon fontSize="small" />
                                     </IconButton>
                                 </InputAdornment>
