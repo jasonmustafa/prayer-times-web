@@ -104,10 +104,8 @@ export const styles = ({
     },
     footerCreated: {
         color: '#bdbdbd',
-        fontWeight: 'bold',
     },
     footerName: {
         color: '#f50057',
-        fontWeight: 'bold',
     }
 });
