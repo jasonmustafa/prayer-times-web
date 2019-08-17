@@ -1,6 +1,6 @@
 # Prayer Times
 
-Simple prayer times application.
+Prayer times progressive web application - [view here](https://prayertimes.netlify.com)!
 
 ## Built With
 
@@ -9,7 +9,7 @@ Simple prayer times application.
 
 ## Authors
 
-* **Jason Mustafa**
+* [**Jason Mustafa**](https://www.jasonmustafa.com)
 
 ## Acknowledgments
 
