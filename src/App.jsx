@@ -29,8 +29,12 @@ class App extends React.Component {
             asr: undefined,
             maghrib: undefined,
             isha: undefined,
-            error: undefined
+            error: undefined,
         };
+
+        if(this.checkAuthorizedGeoLocation) {
+            navigator.geolocation.getCurrentPosition(this.locationSuccess);
+        }
     }
 
     // Get user location when button clicked
@@ -44,10 +48,22 @@ class App extends React.Component {
         }
     }
 
+    // check if geolocation was previously allowed
+    checkAuthorizedGeoLocation() {
+        if (typeof localStorage['authorizedGeoLocation'] === "undefined" || localStorage['authorizedGeoLocation'] === "0") {
+            return false;
+        } else  {
+            localStorage.setItem("authorizedGeoLocation", 0);
+            return true;
+        }
+    }
+
     locationSuccess = async position => {
         let lat = position.coords.latitude;
         let lon = position.coords.longitude;
         let latlon = lat + ',' + lon;
+
+        localStorage.setItem("authorizedGeoLocation", 1);
 
         this.setState({
             latitude: lat,
