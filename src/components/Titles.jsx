@@ -9,26 +9,26 @@ import { styles } from '../styles';
 import '../css/keyframes.css';
 
 function Titles(props) {
-    const { classes } = props;
+  const { classes } = props;
 
-    return (
-        <div>
-            <div className="animated fadeInDown">
-                <img src={Logo} alt="" className={classes.logo} />
-            </div>
+  return (
+    <div>
+      <div className='animated fadeInDown'>
+        <img src={Logo} alt='' className={classes.logo} />
+      </div>
 
-            <div className="animated delay-02s fadeInDown">
-                <Typography variant="h4" className={classes.title}>
-                    Prayer Times
-                </Typography>
-                <br />
-            </div>
-        </div>
-    );
+      <div className='animated delay-02s fadeInDown'>
+        <Typography variant='h4' className={classes.title}>
+          Prayer Times
+        </Typography>
+        <br />
+      </div>
+    </div>
+  );
 }
 
 Titles.propTypes = {
-    classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(Titles);

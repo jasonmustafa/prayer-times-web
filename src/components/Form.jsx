@@ -14,52 +14,56 @@ import { styles } from '../styles';
 import '../css/keyframes.css';
 
 const textfieldTheme = createMuiTheme({
-    palette: {
-        type: 'dark',
-        primary: {
-            main: '#ede7f6'
-        }
-    }
+  palette: {
+    type: 'dark',
+    primary: {
+      main: '#ede7f6',
+    },
+  },
 });
 
 function Form(props) {
-    const { classes } = props;
+  const { classes } = props;
 
-    return (
-        <div className="animated delay-04s fadeInDown">
-            <div className={classes.padding15}>
-                <form onSubmit={props.getData}>
-                    <MuiThemeProvider theme={textfieldTheme}>
-                        <Input
-                            id="location"
-                            label="Location"
-                            type="search"
-                            placeholder="Location"
-                            fullWidth
-                            required={true}
-                            classes={{
-                                underline: classes.textfieldUnderline
-                            }}
-                            endAdornment={
-                                <InputAdornment position="end">
-                                    <IconButton onClick={props.getLocation} color="primary" aria-label="Location Button">
-                                        <LocationIcon fontSize="small" />
-                                    </IconButton>
-                                    <IconButton type="submit" color="primary" aria-label="Search Button">
-                                        <SearchIcon fontSize="small" />
-                                    </IconButton>
-                                </InputAdornment>
-                            }
-                        />
-                    </MuiThemeProvider>
-                </form>
-            </div>
-        </div>
-    );
+  return (
+    <div className='animated delay-04s fadeInDown'>
+      <div className={classes.padding15}>
+        <form onSubmit={props.getData}>
+          <MuiThemeProvider theme={textfieldTheme}>
+            <Input
+              id='location'
+              label='Location'
+              type='search'
+              placeholder='Location'
+              fullWidth
+              required={true}
+              classes={{
+                underline: classes.textfieldUnderline,
+              }}
+              endAdornment={
+                <InputAdornment position='end'>
+                  <IconButton
+                    onClick={props.getLocation}
+                    color='primary'
+                    aria-label='Location Button'
+                  >
+                    <LocationIcon fontSize='small' />
+                  </IconButton>
+                  <IconButton type='submit' color='primary' aria-label='Search Button'>
+                    <SearchIcon fontSize='small' />
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+          </MuiThemeProvider>
+        </form>
+      </div>
+    </div>
+  );
 }
 
 Form.propTypes = {
-    classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(Form);
