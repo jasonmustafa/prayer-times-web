@@ -33,7 +33,10 @@ class App extends React.Component {
         };
     }
 
-    componentDidMount() {
+    // Get user location when button clicked
+    getLocation = async e => {
+        e.preventDefault();
+
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(this.locationSuccess);
         } else {
@@ -157,7 +160,7 @@ class App extends React.Component {
                     <Grid item>
                         <Paper style={{ background: '#000000', maxWidth: 300 }}>
                             <Titles />
-                            <Form getData={this.getData} />
+                            <Form getData={this.getData} getLocation={this.getLocation} />
                             <Data
                                 location={this.state.location}
                                 fajr={this.state.fajr}

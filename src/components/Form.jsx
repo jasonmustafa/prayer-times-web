@@ -42,6 +42,9 @@ function Form(props) {
                             }}
                             endAdornment={
                                 <InputAdornment position="end">
+                                    <IconButton onClick={props.getLocation} color="primary" aria-label="Location Button">
+                                        <LocationIcon fontSize="small" />
+                                    </IconButton>
                                     <IconButton type="submit" color="primary" aria-label="Search Button">
                                         <SearchIcon fontSize="small" />
                                     </IconButton>
