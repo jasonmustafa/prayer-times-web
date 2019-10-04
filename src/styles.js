@@ -97,9 +97,13 @@ export const styles = ({
             'invert(68%) sepia(41%) saturate(345%) hue-rotate(218deg) brightness(92%) contrast(86%)'
     },
     footer: {
+        position: 'absolute',
+        width: '200px',
+        left: '50%',
+        marginLeft: '-100px',
         display: 'flex',
-        justifyContent: 'center',
         alignItems: 'center',
+        justifyContent: 'center',
         textDecoration: 'none'
     },
     footerCreated: {
