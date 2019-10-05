@@ -25,12 +25,12 @@ function Data(props) {
           <div className='animated fadeInDown'>
             <div className='animated fadeInDown'>
               {props.location && (
-                <Typography variant='caption' className={classes.text}>
+                <Typography variant='caption' className={classes.locationText}>
                   {props.location}
                 </Typography>
               )}
               {props.error && (
-                <Typography variant='h6' className={classes.text}>
+                <Typography variant='h6' className={classes.locationText}>
                   {props.error}
                 </Typography>
               )}

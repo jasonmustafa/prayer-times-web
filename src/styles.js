@@ -23,6 +23,14 @@ export const styles = {
   subtitle: {
     color: '#b0bec5',
   },
+  locationText: {
+    color: '#fafafa',
+    fontSize: 20,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '0px 20px 20px 20px',
+  },
   textfieldUnderline: {
     '&:after': {
       borderBottomColor: '#d1c4e9',
@@ -95,6 +103,10 @@ export const styles = {
     marginTop: 24,
     filter:
       'invert(68%) sepia(41%) saturate(345%) hue-rotate(218deg) brightness(92%) contrast(86%)',
+  },
+  settingsIcon: {
+    display: 'flex',
+    justifyContent: 'flex-end',
   },
   footer: {
     position: 'absolute',

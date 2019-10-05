@@ -2,6 +2,7 @@ import React from 'react';
 
 import Titles from './components/Titles';
 import Form from './components/Form';
+import Settings from './components/Settings';
 import Data from './components/Data';
 import Footer from './components/Footer';
 
@@ -34,6 +35,7 @@ class App extends React.Component {
       isha: undefined,
 
       // Settings
+      method: 'ISNA',
 
       error: undefined,
     };
@@ -172,6 +174,7 @@ class App extends React.Component {
             <Paper style={{ background: '#000000', maxWidth: 300 }}>
               <Titles />
               <Form getData={this.getData} getLocation={this.getLocation} />
+              <Settings />
               <Data
                 location={this.state.location}
                 fajr={this.state.fajr}
