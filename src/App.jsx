@@ -14,7 +14,6 @@ import { PrayTimes } from './PrayTimes';
 require('dotenv').config();
 
 // TODO: check input such as "canada"
-// TODO: write single pray times function
 
 // MapQuest API key
 const MQ_API_KEY = process.env.REACT_APP_MQ_API_KEY;
@@ -83,15 +82,18 @@ class App extends React.Component {
     const method = localStorage.getItem('method');
     const juristicMethod = localStorage.getItem('juristicMethod');
 
-    this.setState({
-      settings: {
-        method: method,
-        juristicMethod: juristicMethod,
+    this.setState(
+      {
+        settings: {
+          method: method,
+          juristicMethod: juristicMethod,
+        },
       },
-    }, () => {
-      const prayerData = this.calculatePrayerTimes(this.state.latitude, this.state.longitude);
-      this.setPrayerTimes(this.state.location, prayerData);
-    });
+      () => {
+        const prayerData = this.calculatePrayerTimes(this.state.latitude, this.state.longitude);
+        this.setPrayerTimes(this.state.location, prayerData);
+      },
+    );
   };
 
   locationSuccess = async position => {
@@ -113,12 +115,10 @@ class App extends React.Component {
     const reverse_geocoding_api_call = await fetch(
       `https://www.mapquestapi.com/geocoding/v1/reverse?key=${MQ_API_KEY}&location=${latlon}`,
     ).then();
-
     const reverse_locationData = await reverse_geocoding_api_call.json();
 
     let cityName = reverse_locationData.results[0].locations[0].adminArea5;
     let stateName = reverse_locationData.results[0].locations[0].adminArea3;
-
     let locationText = cityName + ', ' + stateName;
 
     this.setPrayerTimes(locationText, prayerData);
@@ -139,20 +139,39 @@ class App extends React.Component {
     );
     const locationData = await geocoding_api_call.json();
 
+    console.log(locationData);
+
     const lat = locationData.results[0].locations[0].latLng.lat;
     const lon = locationData.results[0].locations[0].latLng.lng;
-
     const prayerData = this.calculatePrayerTimes(lat, lon);
 
-    const locationText =
-      locationData.results[0].locations[0].adminArea5 +
-      ', ' +
-      locationData.results[0].locations[0].adminArea3;
+    let smText = locationData.results[0].locations[0].adminArea5 + ', ';
+    let lgText = locationData.results[0].locations[0].adminArea3;
 
-    // sets state of data, otherwise leaves undefined
+    console.log('smText: ', smText);
+
+    if (lgText === '') {
+      // if no state data
+      if (locationData.results[0].locations[0].geocodeQuality === 'COUNTRY') {
+        // if only country data
+        smText = locationData.results[0].locations[0].adminArea1;
+        lgText = ' [' + lat.toFixed(3) + ', ' + lon.toFixed(3) + '] ';
+      } else {
+        // no country data, display coordinates
+        smText = '[' + lat.toFixed(3) + ', ' + lon.toFixed(3) + ']'
+      }
+    } else if (smText === ', ') {
+      // state, but no city data
+      smText = lgText + ' ';
+      lgText = ' [' + lat.toFixed(3) + ', ' + lon.toFixed(3) + '] ';
+    }
+
+    const locationText = smText + lgText;
+
     this.setPrayerTimes(locationText, prayerData);
   };
 
+  // sets state of location and prayer times
   setPrayerTimes = (locationText, prayerData) => {
     if (locationText) {
       this.setState({

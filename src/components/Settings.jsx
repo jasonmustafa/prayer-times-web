@@ -7,9 +7,9 @@ import IconButton from '@material-ui/core/IconButton';
 import SettingsIcon from '@material-ui/icons/Settings';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
+import DialogActions from '@material-ui/core/DialogActions';
 import Dialog from '@material-ui/core/Dialog';
 import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import FormControl from '@material-ui/core/FormControl';
@@ -17,6 +17,7 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
 import { styles } from '../styles';
 import '../css/keyframes.css';
+import { Typography } from '@material-ui/core';
 
 const settingsTheme = createMuiTheme({
   palette: {
@@ -27,6 +28,7 @@ const settingsTheme = createMuiTheme({
   },
 });
 
+// settings dialog
 function SettingsMenu(props) {
   const localMethod = localStorage.getItem('method');
   const localJuristicMethod = localStorage.getItem('juristicMethod');
@@ -45,7 +47,7 @@ function SettingsMenu(props) {
     }));
   };
 
-  const handleClose = (props) => {
+  const handleClose = () => {
     localStorage.setItem('method', state.method);
     localStorage.setItem('juristicMethod', state.juristicMethod);
 
@@ -58,7 +60,7 @@ function SettingsMenu(props) {
       <DialogContent>
         <form>
           <FormControl>
-            <InputLabel htmlFor='calculation-method'>Calculation Method</InputLabel>
+            <Typography variant='caption'>Calculation Method</Typography>
             <Select
               value={state.method}
               onChange={handleChange}
@@ -67,7 +69,7 @@ function SettingsMenu(props) {
                 id: 'method',
               }}
             >
-              <MenuItem value={'ISNA'}>ISNA (Islamic Society of North America)</MenuItem>
+              <MenuItem value={'ISNA'}>ISNA (Islamic Society of North America) [Default]</MenuItem>
               <MenuItem value={'MWL'}>MWL (Muslim World League)</MenuItem>
               <MenuItem value={'Egypt'}>Egypt (Egyptian General Authority of Survey)</MenuItem>
               <MenuItem value={'Makkah'}>Makkah (Umm al-Qura University, Makkah)</MenuItem>
@@ -85,7 +87,7 @@ function SettingsMenu(props) {
           <br />
 
           <FormControl>
-            <InputLabel htmlFor='juristic-method'>Juristic Method</InputLabel>
+            <Typography variant='caption'>Juristic Method</Typography>
             <Select
               value={state.juristicMethod}
               onChange={handleChange}
@@ -102,6 +104,11 @@ function SettingsMenu(props) {
           <br />
           <br />
 
+          <DialogActions>
+            <Button onClick={handleClose} color='primary' autoFocus>
+              Save
+            </Button>
+          </DialogActions>
         </form>
       </DialogContent>
     </Dialog>
@@ -113,6 +120,7 @@ SettingsMenu.propTypes = {
   open: PropTypes.bool.isRequired,
 };
 
+// settings icon (opens dialog)
 function Settings(props) {
   const { classes } = props;
   const [open, setOpen] = React.useState(false);
