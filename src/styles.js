@@ -108,6 +108,10 @@ export const styles = {
     display: 'flex',
     justifyContent: 'flex-end',
   },
+  settingsSelect: {
+    margin: '20px',
+    padding: '20px',
+  },
   footer: {
     position: 'absolute',
     width: '200px',

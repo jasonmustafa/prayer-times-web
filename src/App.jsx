@@ -13,11 +13,16 @@ import { PrayTimes } from './PrayTimes';
 
 require('dotenv').config();
 
+// TODO: check input such as "canada"
+
 // MapQuest API key
 const MQ_API_KEY = process.env.REACT_APP_MQ_API_KEY;
 
 class App extends React.Component {
   constructor(props) {
+    const localMethod = localStorage.getItem('method');
+    const localJuristicMethod = localStorage.getItem('juristicMethod');
+
     // Sets initial states to undefined
     super(props);
     this.state = {
@@ -35,7 +40,10 @@ class App extends React.Component {
       isha: undefined,
 
       // Settings
-      method: 'ISNA',
+      settings: {
+        method: localMethod ? localMethod : 'ISNA',
+        juristicMethod: localJuristicMethod ? localJuristicMethod : 'Standard',
+      },
 
       error: undefined,
     };
@@ -69,6 +77,25 @@ class App extends React.Component {
     }
   }
 
+  updateSettings = () => {
+    const method = localStorage.getItem('method');
+    const juristicMethod = localStorage.getItem('juristicMethod');
+
+    this.setState({
+      settings: {
+        method: method,
+        juristicMethod: juristicMethod,
+      }
+    });
+
+    // CALLBACK NEEDED?
+
+    //this.state.settings.method = method;
+    //this.state.settings.juristicMethod = juristicMethod;
+
+    console.log(this.state.settings);
+  }
+
   locationSuccess = async position => {
     let lat = position.coords.latitude;
     let lon = position.coords.longitude;
@@ -83,9 +110,11 @@ class App extends React.Component {
     });
 
     // Calculate prayer times
-    const PT = new PrayTimes('ISNA');
+    const prayTimes = new PrayTimes(this.state.settings);
+    prayTimes.setMethod(this.state.settings.method);
+    prayTimes.adjust({ asr: this.state.settings.juristicMethod });
 
-    const prayerData = PT.getTimes(new Date(), [lat, lon], 'auto', 'auto', '12h');
+    const prayerData = prayTimes.getTimes(new Date(), [lat, lon], 'auto', 'auto', '12h');
 
     const reverse_geocoding_api_call = await fetch(
       `https://www.mapquestapi.com/geocoding/v1/reverse?key=${MQ_API_KEY}&location=${latlon}`,
@@ -128,8 +157,11 @@ class App extends React.Component {
 
     // Calculates prayer times using PrayTimes.js
     // TODO: add toggle for different calculation methods
-    const PT = new PrayTimes('ISNA');
-    const prayerData = PT.getTimes(new Date(), [latitude, longitude], 'auto', 'auto', '12h');
+    const prayTimes = new PrayTimes();
+    prayTimes.setMethod(this.state.settings.method);
+    prayTimes.adjust({ asr: this.state.settings.juristicMethod });
+
+    const prayerData = prayTimes.getTimes(new Date(), [latitude, longitude], 'auto', 'auto', '12h');
 
     // Sets state of data, otherwise leaves undefined
     if (location) {
@@ -174,7 +206,7 @@ class App extends React.Component {
             <Paper style={{ background: '#000000', maxWidth: 300 }}>
               <Titles />
               <Form getData={this.getData} getLocation={this.getLocation} />
-              <Settings />
+              <Settings updateSettings={this.updateSettings} />
               <Data
                 location={this.state.location}
                 fajr={this.state.fajr}

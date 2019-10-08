@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import SettingsIcon from '@material-ui/icons/Settings';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -27,11 +28,14 @@ const settingsTheme = createMuiTheme({
 });
 
 function SettingsMenu(props) {
+  const localMethod = localStorage.getItem('method');
+  const localJuristicMethod = localStorage.getItem('juristicMethod');
+
   const { onClose, open } = props;
 
   const [state, setState] = React.useState({
-    method: 'ISNA',
-    juristicMethod: 'Standard',
+    method: localMethod ? localMethod : 'ISNA',
+    juristicMethod: localJuristicMethod ? localJuristicMethod : 'Standard',
   });
 
   const handleChange = event => {
@@ -41,7 +45,10 @@ function SettingsMenu(props) {
     }));
   };
 
-  const handleClose = () => {
+  const handleClose = (props) => {
+    localStorage.setItem('method', state.method);
+    localStorage.setItem('juristicMethod', state.juristicMethod);
+
     onClose();
   };
 
@@ -74,6 +81,9 @@ function SettingsMenu(props) {
             </Select>
           </FormControl>
 
+          <br />
+          <br />
+
           <FormControl>
             <InputLabel htmlFor='juristic-method'>Juristic Method</InputLabel>
             <Select
@@ -88,6 +98,10 @@ function SettingsMenu(props) {
               <MenuItem value={'Hanafi'}>Hanafi</MenuItem>
             </Select>
           </FormControl>
+
+          <br />
+          <br />
+
         </form>
       </DialogContent>
     </Dialog>
@@ -109,6 +123,8 @@ function Settings(props) {
 
   const handleClose = () => {
     setOpen(false);
+
+    props.updateSettings();
   };
 
   return (
