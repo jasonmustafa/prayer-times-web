@@ -14,24 +14,26 @@ import { PrayTimes } from './PrayTimes';
 require('dotenv').config();
 
 // TODO: check input such as "canada"
+// TODO: write single pray times function
 
 // MapQuest API key
 const MQ_API_KEY = process.env.REACT_APP_MQ_API_KEY;
 
 class App extends React.Component {
   constructor(props) {
+    // checks if user altered settings before, returns null otherwise
     const localMethod = localStorage.getItem('method');
     const localJuristicMethod = localStorage.getItem('juristicMethod');
 
-    // Sets initial states to undefined
+    // sets initial states to undefined
     super(props);
     this.state = {
-      // Location
+      // location
       latitude: undefined,
       longitude: undefined,
       location: undefined,
 
-      // Prayers
+      // prayers
       fajr: undefined,
       sunrise: undefined,
       dhuhr: undefined,
@@ -39,7 +41,7 @@ class App extends React.Component {
       maghrib: undefined,
       isha: undefined,
 
-      // Settings
+      // settings
       settings: {
         method: localMethod ? localMethod : 'ISNA',
         juristicMethod: localJuristicMethod ? localJuristicMethod : 'Standard',
@@ -48,13 +50,13 @@ class App extends React.Component {
       error: undefined,
     };
 
-    // Checks if location access previously granted
+    // checks if location access previously granted
     if (this.checkAuthorizedGeoLocation) {
       navigator.geolocation.getCurrentPosition(this.locationSuccess);
     }
   }
 
-  // Get user location when button clicked
+  // get user location when button clicked
   getLocation = async e => {
     e.preventDefault();
 
@@ -85,23 +87,19 @@ class App extends React.Component {
       settings: {
         method: method,
         juristicMethod: juristicMethod,
-      }
+      },
+    }, () => {
+      const prayerData = this.calculatePrayerTimes(this.state.latitude, this.state.longitude);
+      this.setPrayerTimes(this.state.location, prayerData);
     });
-
-    // CALLBACK NEEDED?
-
-    //this.state.settings.method = method;
-    //this.state.settings.juristicMethod = juristicMethod;
-
-    console.log(this.state.settings);
-  }
+  };
 
   locationSuccess = async position => {
     let lat = position.coords.latitude;
     let lon = position.coords.longitude;
     let latlon = lat + ',' + lon;
 
-    // Remembers location access grant
+    // remembers location access grant
     localStorage.setItem('authorizedGeoLocation', 1);
 
     this.setState({
@@ -109,12 +107,8 @@ class App extends React.Component {
       longitude: lon,
     });
 
-    // Calculate prayer times
-    const prayTimes = new PrayTimes(this.state.settings);
-    prayTimes.setMethod(this.state.settings.method);
-    prayTimes.adjust({ asr: this.state.settings.juristicMethod });
-
-    const prayerData = prayTimes.getTimes(new Date(), [lat, lon], 'auto', 'auto', '12h');
+    // calculate prayer times
+    const prayerData = this.calculatePrayerTimes(lat, lon);
 
     const reverse_geocoding_api_call = await fetch(
       `https://www.mapquestapi.com/geocoding/v1/reverse?key=${MQ_API_KEY}&location=${latlon}`,
@@ -125,51 +119,44 @@ class App extends React.Component {
     let cityName = reverse_locationData.results[0].locations[0].adminArea5;
     let stateName = reverse_locationData.results[0].locations[0].adminArea3;
 
-    this.setState({
-      location: cityName + ', ' + stateName,
-      fajr: prayerData.fajr,
-      sunrise: prayerData.sunrise,
-      dhuhr: prayerData.dhuhr,
-      asr: prayerData.asr,
-      maghrib: prayerData.maghrib,
-      isha: prayerData.isha,
-      error: '',
-    });
+    let locationText = cityName + ', ' + stateName;
+
+    this.setPrayerTimes(locationText, prayerData);
   };
 
   locationFailure = err => {
     this.setState({ error: err.message });
   };
 
-  // Function that runs when search button clicked
+  // function that runs when search button clicked
   getData = async e => {
     e.preventDefault();
     const location = e.target.elements.location.value;
 
-    // MapQuest geocoding get coordinates
+    // mapQuest geocoding get coordinates
     const geocoding_api_call = await fetch(
       `https://www.mapquestapi.com/geocoding/v1/address?key=${MQ_API_KEY}&location=${location}`,
     );
     const locationData = await geocoding_api_call.json();
 
-    const latitude = locationData.results[0].locations[0].latLng.lat;
-    const longitude = locationData.results[0].locations[0].latLng.lng;
+    const lat = locationData.results[0].locations[0].latLng.lat;
+    const lon = locationData.results[0].locations[0].latLng.lng;
 
-    // Calculates prayer times using PrayTimes.js
-    // TODO: add toggle for different calculation methods
-    const prayTimes = new PrayTimes();
-    prayTimes.setMethod(this.state.settings.method);
-    prayTimes.adjust({ asr: this.state.settings.juristicMethod });
+    const prayerData = this.calculatePrayerTimes(lat, lon);
 
-    const prayerData = prayTimes.getTimes(new Date(), [latitude, longitude], 'auto', 'auto', '12h');
+    const locationText =
+      locationData.results[0].locations[0].adminArea5 +
+      ', ' +
+      locationData.results[0].locations[0].adminArea3;
 
-    // Sets state of data, otherwise leaves undefined
-    if (location) {
+    // sets state of data, otherwise leaves undefined
+    this.setPrayerTimes(locationText, prayerData);
+  };
+
+  setPrayerTimes = (locationText, prayerData) => {
+    if (locationText) {
       this.setState({
-        location:
-          locationData.results[0].locations[0].adminArea5 +
-          ', ' +
-          locationData.results[0].locations[0].adminArea3,
+        location: locationText,
         fajr: prayerData.fajr,
         sunrise: prayerData.sunrise,
         dhuhr: prayerData.dhuhr,
@@ -187,9 +174,18 @@ class App extends React.Component {
         asr: undefined,
         maghrib: undefined,
         isha: undefined,
-        error: 'Please enter the value.',
+        error: 'Unable to determine location.',
       });
     }
+  };
+
+  // calculate prayer times
+  calculatePrayerTimes = (lat, lon) => {
+    const prayTimes = new PrayTimes();
+    prayTimes.setMethod(this.state.settings.method);
+    prayTimes.adjust({ asr: this.state.settings.juristicMethod });
+
+    return prayTimes.getTimes(new Date(), [lat, lon], 'auto', 'auto', '12h');
   };
 
   render() {
