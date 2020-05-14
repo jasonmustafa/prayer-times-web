@@ -42,8 +42,8 @@ function SettingsMenu(props) {
 
   const handleChange = event => {
     setState(oldState => ({
-      ...oldState,
-      [event.target.name]: event.target.value,
+      ...oldState, // get previous state
+      [event.target.name]: event.target.value, // update 
     }));
   };
 
@@ -120,7 +120,7 @@ SettingsMenu.propTypes = {
   open: PropTypes.bool.isRequired,
 };
 
-// settings icon (opens dialog)
+// settings icon (open dialog)
 function Settings(props) {
   const { classes } = props;
   const [open, setOpen] = React.useState(false);

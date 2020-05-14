@@ -4,7 +4,7 @@ import Titles from './components/Titles';
 import Form from './components/Form';
 import Settings from './components/Settings';
 import Data from './components/Data';
-import Footer from './components/Footer';
+{/*import Footer from './components/Footer';*/}
 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -13,19 +13,18 @@ import { PrayTimes } from './PrayTimes';
 
 require('dotenv').config();
 
-// TODO: check input such as "canada"
-
 // MapQuest API key
 const MQ_API_KEY = process.env.REACT_APP_MQ_API_KEY;
 
 class App extends React.Component {
   constructor(props) {
-    // checks if user altered settings before, returns null otherwise
+    // check if user settings exist
     const localMethod = localStorage.getItem('method');
     const localJuristicMethod = localStorage.getItem('juristicMethod');
 
-    // sets initial states to undefined
+    // set initial states to undefined
     super(props);
+
     this.state = {
       // location
       latitude: undefined,
@@ -101,7 +100,7 @@ class App extends React.Component {
     let lon = position.coords.longitude;
     let latlon = lat + ',' + lon;
 
-    // remembers location access grant
+    // remember location access grant
     localStorage.setItem('authorizedGeoLocation', 1);
 
     this.setState({
@@ -128,7 +127,7 @@ class App extends React.Component {
     this.setState({ error: err.message });
   };
 
-  // function that runs when search button clicked
+  // get prayer data when search button clicked
   getData = async e => {
     e.preventDefault();
     const location = e.target.elements.location.value;
@@ -171,7 +170,7 @@ class App extends React.Component {
     this.setPrayerTimes(locationText, prayerData);
   };
 
-  // sets state of location and prayer times
+  // set state of location and prayer times
   setPrayerTimes = (locationText, prayerData) => {
     if (locationText) {
       this.setState({
@@ -235,7 +234,7 @@ class App extends React.Component {
             </Paper>
           </Grid>
         </Grid>
-        <Footer />
+        {/*<Footer />*/}
       </div>
     );
   }
