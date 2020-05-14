@@ -6,15 +6,38 @@
 
 ![demo-gif](src/img/demo.gif)
 
+---
+
+## Installation
+
+### Clone
+
+- Clone this repo to your local machine using `https://github.com/jasonmustafa/prayer-times.git`
+
+### Setup
+
+> install yarn and run:
+
+```shell
+$ yarn install
+$ yarn start
+```
+
+> alternatively:
+
+```shell
+$ npm install
+$ npm start
+```
+
+---
+
 ## Built With
 
-* [React](https://reactjs.org/) - JavaScript Library
+* [React](https://reactjs.org/)
 * [Material-UI](https://material-ui.com/) - React UI Framework
+* [Pray Times](http://praytimes.org/) - Library for calculating prayre times
 
 ## Authors
 
 * [**Jason Mustafa**](https://www.jasonmustafa.com)
-
-## Acknowledgments
-
-* [Pray Times](http://praytimes.org/) - Used to calculate prayer times.
