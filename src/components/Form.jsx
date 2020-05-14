@@ -22,7 +22,7 @@ const textfieldTheme = createMuiTheme({
 });
 
 function Form(props) {
-  const classes = props;
+  const { classes } = props;
 
   return (
     <div className='animated delay-04s fadeInDown'>

@@ -16,7 +16,7 @@ import Sunset from "../svgs/wi-sunset.svg";
 import Night from "../svgs/wi-night-clear.svg";
 
 function Data(props) {
-  const classes = props;
+  const { classes } = props;
 
   return (
     <div>

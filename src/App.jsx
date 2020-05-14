@@ -4,8 +4,6 @@ import Titles from './components/Titles';
 import Form from './components/Form';
 import Settings from './components/Settings';
 import Data from './components/Data';
-{/*import Footer from './components/Footer';*/}
-
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
