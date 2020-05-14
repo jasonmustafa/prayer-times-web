@@ -1,6 +1,7 @@
 # Prayer Times
+> Prayer times progressive web application - [view here](https://prayertimes.netlify.com)!
 
-Prayer times progressive web application - [view here](https://prayertimes.netlify.com)!
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)]
 
 ## Built With
 
