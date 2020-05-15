@@ -11,6 +11,9 @@ import { PrayTimes } from './PrayTimes';
 
 require('dotenv').config();
 
+// unit testing framework w/ classes
+// separate out location calculation
+
 // MapQuest API key
 const MQ_API_KEY = process.env.REACT_APP_MQ_API_KEY;
 

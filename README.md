@@ -1,8 +1,8 @@
 # Prayer Times
 > Prayer times progressive web application - [view here](https://prayertimes.netlify.com)!
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/03bc1cba-35d3-4025-b60a-d96b575c0533/deploy-status)](https://app.netlify.com/sites/prayertimes/deploys)
-[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+![Netlify](https://img.shields.io/netlify/03bc1cba-35d3-4025-b60a-d96b575c0533)
+![GitHub](https://img.shields.io/github/license/jasonmustafa/prayer-times)
 
 ![demo-gif](src/img/demo.gif)
 
@@ -36,8 +36,15 @@ $ npm start
 
 * [React](https://reactjs.org/)
 * [Material-UI](https://material-ui.com/) - React UI Framework
-* [Pray Times](http://praytimes.org/) - Library for calculating prayre times
+* [Pray Times](http://praytimes.org/) - Library for calculating prayer times
 
 ## Authors
 
 * [**Jason Mustafa**](https://www.jasonmustafa.com)
+
+---
+
+## License
+
+- **[MIT license](http://opensource.org/licenses/mit-license.php)**
+- Copyright 2020 © Jason Mustafa.
